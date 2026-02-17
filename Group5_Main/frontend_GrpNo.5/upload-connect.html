@@ -102,8 +102,74 @@
               <button class="action-btn mt-4" data-action="browse-files" type="button">Browse Files</button>
             </div>
           </section>
+
+          <!-- Video Player Section (hidden by default) -->
+          <section class="mt-6 dashboard-card p-6 hidden" id="video-player-section" data-section="video-player">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-sm font-semibold text-white">Processed Video with Detection</h2>
+              <button class="action-btn" data-action="close-video" type="button">Close</button>
+            </div>
+            
+            <div class="mt-4">
+              <video 
+                id="processed-video" 
+                controls 
+                class="w-full rounded-xl bg-slate-900/60"
+                style="max-height: 600px;"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <!-- Detection Stats -->
+            <div class="mt-4 grid grid-cols-3 gap-4">
+              <div class="dashboard-card p-4">
+                <p class="text-xs text-slate-400">Person Count</p>
+                <p class="mt-2 text-2xl font-semibold text-white" id="video-person-count">0</p>
+              </div>
+              <div class="dashboard-card p-4">
+                <p class="text-xs text-slate-400">Density</p>
+                <p class="mt-2 text-2xl font-semibold text-white" id="video-density">0%</p>
+              </div>
+              <div class="dashboard-card p-4">
+                <p class="text-xs text-slate-400">Status</p>
+                <p class="mt-2 text-sm font-semibold text-emerald-300" id="video-status">Ready</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Image Preview Section (hidden by default) -->
+          <section class="mt-6 dashboard-card p-6 hidden" id="image-preview-section" data-section="image-preview">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-sm font-semibold text-white">Processed Image with Detection</h2>
+              <button class="action-btn" data-action="close-image" type="button">Close</button>
+            </div>
+            
+            <div class="mt-4">
+              <img 
+                id="processed-image" 
+                class="w-full rounded-xl bg-slate-900/60"
+                style="max-height: 600px; object-fit: contain;"
+                alt="Processed image with detections"
+              />
+            </div>
+
+            <!-- Detection Stats -->
+            <div class="mt-4 grid grid-cols-2 gap-4">
+              <div class="dashboard-card p-4">
+                <p class="text-xs text-slate-400">Person Count</p>
+                <p class="mt-2 text-2xl font-semibold text-white" id="image-person-count">0</p>
+              </div>
+              <div class="dashboard-card p-4">
+                <p class="text-xs text-slate-400">Density</p>
+                <p class="mt-2 text-2xl font-semibold text-white" id="image-density">0%</p>
+              </div>
+            </div>
+          </section>
         </main>
       </div>
     </div>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
