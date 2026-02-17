@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdSense - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="dashboard-body" data-page="dashboard">
+    <div class="dashboard-bg">
+      <div class="flex min-h-screen">
+        <aside class="sidebar hidden w-64 flex-col px-6 py-6 text-sm lg:flex">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/90">
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M17 20v-1a4 4 0 0 0-4-4h-1"></path>
+                <path d="M7 20v-1a4 4 0 0 1 4-4h1"></path>
+                <circle cx="9" cy="8" r="3"></circle>
+                <circle cx="16" cy="7" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="text-base font-semibold text-white">EventVision</p>
+              <p class="text-xs text-slate-400">Crowd analytics</p>
+            </div>
+          </div>
+
+          <nav class="mt-10 space-y-2">
+            <a class="sidebar-link active flex items-center gap-3 rounded-xl px-3 py-2" data-nav="dashboard" href="dashboard.html">
+              <span>Dashboard</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="upload" href="upload-connect.html">
+              <span>Upload &amp; Connect</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="analytics" href="analytics.html">
+              <span>Analytics</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="settings" href="settings.html">
+              <span>Settings</span>
+            </a>
+          </nav>
+
+          <div class="mt-auto pt-8 text-xs text-slate-400">
+            <button class="flex items-center gap-2 text-slate-300" data-action="signout" type="button">
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </aside>
+
+        <main class="flex-1 px-6 py-6 lg:px-10">
+          <header class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h1 class="text-2xl font-semibold text-white">Dashboard</h1>
+              <p class="text-sm text-slate-400">Real-time crowd monitoring and analysis</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <button class="action-btn" data-action="upload-media" type="button">Upload Media</button>
+              <button class="action-btn primary" data-action="add-camera" type="button">Add Camera</button>
+            </div>
+          </header>
+
+          <section class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="dashboard-card p-4" data-metric="total-attendance">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs text-slate-400">Total Attendance</p>
+                  <p class="mt-2 text-2xl font-semibold text-white" id="metric-total-attendance">12,450</p>
+                </div>
+                <div class="stat-chip bg-emerald-500/20 text-emerald-300">
+                  <span id="metric-total-attendance-delta">+12%</span>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">vs last hour</p>
+            </div>
+            <div class="dashboard-card p-4" data-metric="avg-density">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs text-slate-400">Avg Density</p>
+                  <p class="mt-2 text-2xl font-semibold text-white" id="metric-avg-density">68%</p>
+                </div>
+                <div class="stat-chip bg-rose-500/20 text-rose-300">
+                  <span id="metric-avg-density-delta">-5%</span>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">vs last hour</p>
+            </div>
+            <div class="dashboard-card p-4" data-metric="active-alerts">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs text-slate-400">Active Alerts</p>
+                  <p class="mt-2 text-2xl font-semibold text-white" id="metric-active-alerts">3</p>
+                </div>
+                <div class="stat-chip bg-amber-500/20 text-amber-300">
+                  <span id="metric-active-alerts-delta">2 new</span>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">in the last hour</p>
+            </div>
+            <div class="dashboard-card p-4" data-metric="active-cameras">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs text-slate-400">Active Cameras</p>
+                  <p class="mt-2 text-2xl font-semibold text-white" id="metric-active-cameras">24/24</p>
+                </div>
+                <div class="stat-chip bg-blue-500/20 text-blue-300">
+                  <span id="metric-active-cameras-status">Online</span>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">All feeds healthy</p>
+            </div>
+          </section>
+
+          <section class="mt-6 grid gap-4 lg:grid-cols-[2fr_1fr]">
+            <div class="dashboard-card p-5" data-widget="heatmap" data-zone="main-stage">
+              <div class="flex items-center justify-between">
+                <h2 class="text-sm font-semibold text-white">Live Density Heatmap</h2>
+                <span class="text-xs text-slate-400" id="heatmap-updated">Updated: Live</span>
+              </div>
+              <div class="mt-4 rounded-xl bg-slate-900/60 p-4">
+                <div class="heatmap-grid" id="heatmap-grid">
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-crit"></div>
+                  <div class="heat-cell heat-crit"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-crit"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-crit"></div>
+                  <div class="heat-cell heat-crit"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-crit"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-high"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell heat-med"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell heat-low"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                  <div class="heat-cell"></div>
+                </div>
+
+                <div class="mt-4 flex flex-wrap items-center gap-3 text-xs text-slate-400">
+                  <span id="heatmap-zone">Zone: Main Stage Area</span>
+                  <span class="text-emerald-400">Low</span>
+                  <span class="text-amber-400">Med</span>
+                  <span class="text-rose-400">High</span>
+                  <span class="text-rose-600">Crit</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card p-5" data-widget="recent-alerts">
+              <h2 class="text-sm font-semibold text-white">Recent Alerts</h2>
+              <div class="mt-4 space-y-3" id="recent-alerts-list" data-list="alerts">
+                <div class="rounded-xl bg-slate-900/60 p-4" data-alert-id="alert-1">
+                  <p class="text-sm text-white" data-alert-title>Zone A density</p>
+                  <p class="text-xs text-rose-400" data-alert-level>CRITICAL</p>
+                  <p class="text-xs text-slate-400" data-alert-time>2m ago</p>
+                </div>
+                <div class="rounded-xl bg-slate-900/60 p-4" data-alert-id="alert-2">
+                  <p class="text-sm text-white" data-alert-title>Crowd movement</p>
+                  <p class="text-xs text-amber-400" data-alert-level>WARNING</p>
+                  <p class="text-xs text-slate-400" data-alert-time>15m ago</p>
+                </div>
+                <div class="rounded-xl bg-slate-900/60 p-4" data-alert-id="alert-3">
+                  <p class="text-sm text-white" data-alert-title>Camera 4</p>
+                  <p class="text-xs text-blue-300" data-alert-level>INFO</p>
+                  <p class="text-xs text-slate-400" data-alert-time>1h ago</p>
+                </div>
+                <div class="rounded-xl bg-slate-900/60 p-4" data-alert-id="alert-4">
+                  <p class="text-sm text-white" data-alert-title>Zone B density</p>
+                  <p class="text-xs text-emerald-300" data-alert-level>SUCCESS</p>
+                  <p class="text-xs text-slate-400" data-alert-time>2h ago</p>
+                </div>
+              </div>
+              <button class="mt-4 w-full text-xs text-slate-400" data-action="alerts-history" type="button">
+                View all alerts history
+              </button>
+            </div>
+          </section>
+
+          <section class="mt-6 grid gap-4 md:grid-cols-3">
+            <div class="dashboard-card p-4" data-camera="cam-01">
+              <p class="text-xs text-slate-400">Camera 01 - Entrance</p>
+              <div class="mt-3 rounded-lg bg-slate-900/60 px-3 py-2 text-xs text-emerald-300" data-camera-status>
+                Live
+              </div>
+              <button class="action-btn mt-4 w-full" data-action="view-feed" type="button">View Feed</button>
+            </div>
+            <div class="dashboard-card p-4" data-camera="cam-02">
+              <p class="text-xs text-slate-400">Camera 02 - Entrance</p>
+              <div class="mt-3 rounded-lg bg-slate-900/60 px-3 py-2 text-xs text-emerald-300" data-camera-status>
+                Live
+              </div>
+              <button class="action-btn mt-4 w-full" data-action="view-feed" type="button">View Feed</button>
+            </div>
+            <div class="dashboard-card p-4" data-camera="cam-03">
+              <p class="text-xs text-slate-400">Camera 03 - Entrance</p>
+              <div class="mt-3 rounded-lg bg-slate-900/60 px-3 py-2 text-xs text-emerald-300" data-camera-status>
+                Live
+              </div>
+              <button class="action-btn mt-4 w-full" data-action="view-feed" type="button">View Feed</button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

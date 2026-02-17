@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdSense - Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="dashboard-body" data-page="settings">
+    <div class="dashboard-bg">
+      <div class="flex min-h-screen">
+        <aside class="sidebar hidden w-64 flex-col px-6 py-6 text-sm lg:flex">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/90">
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M17 20v-1a4 4 0 0 0-4-4h-1"></path>
+                <path d="M7 20v-1a4 4 0 0 1 4-4h1"></path>
+                <circle cx="9" cy="8" r="3"></circle>
+                <circle cx="16" cy="7" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="text-base font-semibold text-white">EventVision</p>
+              <p class="text-xs text-slate-400">Crowd analytics</p>
+            </div>
+          </div>
+
+          <nav class="mt-10 space-y-2">
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="dashboard" href="dashboard.html">
+              <span>Dashboard</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="upload" href="upload-connect.html">
+              <span>Upload &amp; Connect</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="analytics" href="analytics.html">
+              <span>Analytics</span>
+            </a>
+            <a class="sidebar-link active flex items-center gap-3 rounded-xl px-3 py-2" data-nav="settings" href="settings.html">
+              <span>Settings</span>
+            </a>
+          </nav>
+
+          <div class="mt-auto pt-8 text-xs text-slate-400">
+            <button class="flex items-center gap-2 text-slate-300" data-action="signout" type="button">
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </aside>
+
+        <main class="flex-1 px-6 py-6 lg:px-10">
+          <header>
+            <h1 class="text-2xl font-semibold text-white">Settings</h1>
+            <p class="text-sm text-slate-400">Manage system preferences and alerts</p>
+          </header>
+
+          <section class="mt-6 dashboard-card p-6" data-section="thresholds">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h2 class="text-sm font-semibold text-white">Density Thresholds</h2>
+                <p class="text-xs text-slate-400">Configure alert levels by zone density.</p>
+              </div>
+              <button class="action-btn primary" data-action="save-thresholds" type="button">Save Thresholds</button>
+            </div>
+
+            <div class="mt-6 grid gap-6 md:grid-cols-3">
+              <div data-threshold="safe">
+                <div class="flex items-center justify-between text-xs text-emerald-300">
+                  <span>Safe Level (0-40%)</span>
+                  <span id="threshold-safe-value">40%</span>
+                </div>
+                <div class="setting-track safe mt-2">
+                  <span id="threshold-safe-bar" style="width: 40%"></span>
+                </div>
+                <p class="mt-2 text-xs text-slate-400">Normal operating conditions.</p>
+              </div>
+              <div data-threshold="warning">
+                <div class="flex items-center justify-between text-xs text-amber-300">
+                  <span>Warning Level (40-75%)</span>
+                  <span id="threshold-warning-value">75%</span>
+                </div>
+                <div class="setting-track warn mt-2">
+                  <span id="threshold-warning-bar" style="width: 75%"></span>
+                </div>
+                <p class="mt-2 text-xs text-slate-400">Triggers yellow alerts for staff.</p>
+              </div>
+              <div data-threshold="critical">
+                <div class="flex items-center justify-between text-xs text-rose-300">
+                  <span>Critical Level (&gt;75%)</span>
+                  <span id="threshold-critical-value">85%</span>
+                </div>
+                <div class="setting-track crit mt-2">
+                  <span id="threshold-critical-bar" style="width: 85%"></span>
+                </div>
+                <p class="mt-2 text-xs text-slate-400">Triggers emergency protocols.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-6 grid gap-4 lg:grid-cols-2">
+            <div class="dashboard-card p-6" data-section="notifications">
+              <h2 class="text-sm font-semibold text-white">Notifications</h2>
+              <div class="mt-4 space-y-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-white">Email Alerts</p>
+                    <p class="text-xs text-slate-400">Receive daily summaries</p>
+                  </div>
+                  <span class="toggle on" data-toggle="email-alerts" aria-hidden="true"></span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-white">SMS Notifications</p>
+                    <p class="text-xs text-slate-400">Critical alerts only</p>
+                  </div>
+                  <span class="toggle" data-toggle="sms-alerts" aria-hidden="true"></span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm text-white">Push Notifications</p>
+                    <p class="text-xs text-slate-400">Real-time updates</p>
+                  </div>
+                  <span class="toggle" data-toggle="push-alerts" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-card p-6" data-section="account">
+              <h2 class="text-sm font-semibold text-white">Account</h2>
+              <div class="mt-4 space-y-4">
+                <div>
+                  <label class="text-xs text-slate-400" for="org">Organization Name</label>
+                  <input
+                    class="auth-input mt-2"
+                    data-field="organization_name"
+                    id="org"
+                    type="text"
+                    value="EventHorizon Inc."
+                  />
+                </div>
+                <div>
+                  <label class="text-xs text-slate-400" for="admin">Admin Email</label>
+                  <input
+                    class="auth-input mt-2"
+                    data-field="admin_email"
+                    id="admin"
+                    type="email"
+                    value="admin@eventhorizon.com"
+                  />
+                </div>
+                <button class="action-btn w-full" data-action="manage-team" type="button">
+                  Manage Team Members
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

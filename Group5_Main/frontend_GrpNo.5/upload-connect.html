@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdSense - Upload & Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="dashboard-body" data-page="upload-connect">
+    <div class="dashboard-bg">
+      <div class="flex min-h-screen">
+        <aside class="sidebar hidden w-64 flex-col px-6 py-6 text-sm lg:flex">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/90">
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M17 20v-1a4 4 0 0 0-4-4h-1"></path>
+                <path d="M7 20v-1a4 4 0 0 1 4-4h1"></path>
+                <circle cx="9" cy="8" r="3"></circle>
+                <circle cx="16" cy="7" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="text-base font-semibold text-white">EventVision</p>
+              <p class="text-xs text-slate-400">Crowd analytics</p>
+            </div>
+          </div>
+
+          <nav class="mt-10 space-y-2">
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="dashboard" href="dashboard.html">
+              <span>Dashboard</span>
+            </a>
+            <a class="sidebar-link active flex items-center gap-3 rounded-xl px-3 py-2" data-nav="upload" href="upload-connect.html">
+              <span>Upload &amp; Connect</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="analytics" href="analytics.html">
+              <span>Analytics</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="settings" href="settings.html">
+              <span>Settings</span>
+            </a>
+          </nav>
+
+          <div class="mt-auto pt-8 text-xs text-slate-400">
+            <button class="flex items-center gap-2 text-slate-300" data-action="signout" type="button">
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </aside>
+
+        <main class="flex-1 px-6 py-6 lg:px-10">
+          <header>
+            <h1 class="text-2xl font-semibold text-white">Add Media Source</h1>
+            <p class="text-sm text-slate-400">Upload footage or connect a live camera feed</p>
+          </header>
+
+          <div class="mt-6 flex flex-wrap gap-6 border-b border-slate-800" data-tabs="media-source">
+            <button class="tab-link active" data-tab="upload" type="button">Upload Files</button>
+            <button class="tab-link" data-tab="connect" type="button">Connect Camera</button>
+          </div>
+
+          <section class="mt-6 dashboard-card p-6" data-section="file-upload">
+            <h2 class="text-sm font-semibold text-white">File Upload</h2>
+            <div
+              class="upload-drop mt-4 flex flex-col items-center justify-center px-6 py-12 text-center"
+              id="upload-dropzone"
+              data-widget="dropzone"
+            >
+              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-slate-800/70">
+                <svg
+                  aria-hidden="true"
+                  class="h-6 w-6 text-slate-300"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M4 16.5a4.5 4.5 0 0 1 .9-8.9 5 5 0 0 1 9.8-1.5h.2a4 4 0 0 1 0 8H13"></path>
+                  <path d="M12 12v9"></path>
+                  <path d="m16 16-4-4-4 4"></path>
+                </svg>
+              </div>
+              <p class="mt-4 text-sm text-white">Drag &amp; Drop files here</p>
+              <p class="mt-1 text-xs text-slate-400">Support for MP4, AVI, JPG, PNG (Max 500MB)</p>
+              <button class="action-btn mt-4" data-action="browse-files" type="button">Browse Files</button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdSense - Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="dashboard-body" data-page="analytics">
+    <div class="dashboard-bg">
+      <div class="flex min-h-screen">
+        <aside class="sidebar hidden w-64 flex-col px-6 py-6 text-sm lg:flex">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600/90">
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M17 20v-1a4 4 0 0 0-4-4h-1"></path>
+                <path d="M7 20v-1a4 4 0 0 1 4-4h1"></path>
+                <circle cx="9" cy="8" r="3"></circle>
+                <circle cx="16" cy="7" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="text-base font-semibold text-white">EventVision</p>
+              <p class="text-xs text-slate-400">Crowd analytics</p>
+            </div>
+          </div>
+
+          <nav class="mt-10 space-y-2">
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="dashboard" href="dashboard.html">
+              <span>Dashboard</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="upload" href="upload-connect.html">
+              <span>Upload &amp; Connect</span>
+            </a>
+            <a class="sidebar-link active flex items-center gap-3 rounded-xl px-3 py-2" data-nav="analytics" href="analytics.html">
+              <span>Analytics</span>
+            </a>
+            <a class="sidebar-link flex items-center gap-3 rounded-xl px-3 py-2" data-nav="settings" href="settings.html">
+              <span>Settings</span>
+            </a>
+          </nav>
+
+          <div class="mt-auto pt-8 text-xs text-slate-400">
+            <button class="flex items-center gap-2 text-slate-300" data-action="signout" type="button">
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </aside>
+
+        <main class="flex-1 px-6 py-6 lg:px-10">
+          <header class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h1 class="text-2xl font-semibold text-white">Analytics Report</h1>
+              <p class="text-sm text-slate-400">Historical density data and crowd trends</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <button class="action-btn" data-action="filter-range" type="button">Last 24 Hours</button>
+              <button class="action-btn primary" data-action="export-csv" type="button">Export CSV</button>
+            </div>
+          </header>
+
+          <section class="mt-6 grid gap-4 lg:grid-cols-2">
+            <div class="dashboard-card p-5" data-chart="density-trends">
+              <h2 class="text-sm font-semibold text-white">Density Trends by Zone</h2>
+              <div class="mt-4 h-64 rounded-xl bg-slate-900/60" id="chart-density-trends"></div>
+            </div>
+            <div class="dashboard-card p-5" data-chart="peak-distribution">
+              <h2 class="text-sm font-semibold text-white">Peak Crowd Distribution</h2>
+              <div class="mt-4 h-64 rounded-xl bg-slate-900/60" id="chart-peak-distribution"></div>
+            </div>
+          </section>
+
+          <section class="mt-6 dashboard-card p-5" data-section="zone-stats">
+            <h2 class="text-sm font-semibold text-white">Detailed Zone Statistics</h2>
+            <div class="mt-4 overflow-x-auto">
+              <table class="analytics-table" id="zone-stats-table" data-table="zone-stats">
+                <thead>
+                  <tr>
+                    <th>Zone Name</th>
+                    <th>Avg Density</th>
+                    <th>Peak Time</th>
+                    <th>Alerts Triggered</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="zone-stats-body">
+                  <tr>
+                    <td class="text-white">Main Stage</td>
+                    <td>78%</td>
+                    <td>14:30</td>
+                    <td>12</td>
+                    <td><span class="status-pill status-critical">Critical</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-white">Food Court</td>
+                    <td>45%</td>
+                    <td>12:15</td>
+                    <td>3</td>
+                    <td><span class="status-pill status-normal">Normal</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-white">Entrance North</td>
+                    <td>32%</td>
+                    <td>09:45</td>
+                    <td>0</td>
+                    <td><span class="status-pill status-normal">Normal</span></td>
+                  </tr>
+                  <tr>
+                    <td class="text-white">VIP Lounge</td>
+                    <td>85%</td>
+                    <td>21:00</td>
+                    <td>5</td>
+                    <td><span class="status-pill status-warning">Warning</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

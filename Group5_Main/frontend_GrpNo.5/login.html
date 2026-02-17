@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdSense - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              ink: {
+                900: "#0b0f14",
+                800: "#111722",
+                700: "#192334",
+                200: "#d2dae4",
+                100: "#eef2f6",
+              },
+              tide: {
+                600: "#1d9aa5",
+                500: "#27b8c4",
+                100: "#e1f5f5",
+              },
+              sun: {
+                500: "#f7b948",
+                400: "#ffd07a",
+              },
+            },
+            boxShadow: {
+              soft: "0 20px 60px rgba(12, 18, 26, 0.18)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="auth-body" data-page="login">
+    <div class="auth-bg">
+      <main class="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
+        <section class="w-full max-w-md text-center text-white fade-up">
+          <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600/90">
+            <svg
+              aria-hidden="true"
+              class="h-7 w-7 text-white"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15 19a4 4 0 0 0-6 0"></path>
+              <circle cx="12" cy="9" r="4"></circle>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-semibold sm:text-3xl">Welcome back</h1>
+          <p class="mt-2 text-sm text-slate-300">Sign in to continue monitoring.</p>
+
+          <div class="auth-card mt-8 rounded-2xl p-6 text-left sm:p-7" data-section="login-card">
+            <form class="space-y-4" id="login-form" data-form="login">
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="email">Work Email</label>
+                <input
+                  class="auth-input mt-2"
+                  id="email"
+                  data-field="email"
+                  name="email"
+                  placeholder="team@crowdsense.ai"
+                  type="email"
+                />
+              </div>
+
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="password">Password</label>
+                <input
+                  class="auth-input mt-2"
+                  id="password"
+                  data-field="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  type="password"
+                />
+              </div>
+
+              <div class="flex items-center justify-between text-xs text-slate-300">
+                <label class="flex items-center gap-2">
+                  <input
+                    class="h-4 w-4 rounded border-slate-500 bg-transparent"
+                    data-field="remember"
+                    type="checkbox"
+                  />
+                  Remember me
+                </label>
+                <button class="auth-link" data-action="forgot-password" type="button">Forgot password?</button>
+              </div>
+
+              <button class="auth-btn" data-action="login" type="submit">Sign in</button>
+            </form>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-300">
+            New here?
+            <a class="auth-link font-medium" data-link="signup" href="signup.html">Create an account</a>
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

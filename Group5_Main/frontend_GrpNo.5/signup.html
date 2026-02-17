@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdSense - Signup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              ink: {
+                900: "#0b0f14",
+                800: "#111722",
+                700: "#192334",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="auth-body" data-page="signup">
+    <div class="auth-bg">
+      <main class="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
+        <section class="w-full max-w-md text-center text-white fade-up">
+          <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600/90">
+            <svg
+              aria-hidden="true"
+              class="h-7 w-7 text-white"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M16 19h5a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M17 11a4 4 0 1 0-6 0"></path>
+              <path d="M3 19a4 4 0 0 1 8 0"></path>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-semibold sm:text-3xl">Create your account</h1>
+          <p class="mt-2 text-sm text-slate-300">Start monitoring crowd density in minutes</p>
+
+          <div class="auth-card mt-8 rounded-2xl p-6 text-left sm:p-7" data-section="signup-card">
+            <form class="space-y-4" id="signup-form" data-form="signup">
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="fullName">Full Name</label>
+                <input
+                  class="auth-input mt-2"
+                  id="fullName"
+                  data-field="full_name"
+                  name="fullName"
+                  placeholder="John Doe"
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="email">Work Email</label>
+                <input
+                  class="auth-input mt-2"
+                  id="email"
+                  data-field="email"
+                  name="email"
+                  placeholder="name@company.com"
+                  type="email"
+                />
+              </div>
+
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="organization">Organization</label>
+                <input
+                  class="auth-input mt-2"
+                  id="organization"
+                  data-field="organization"
+                  name="organization"
+                  placeholder="Your company or venue name"
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="password">Password</label>
+                <input
+                  class="auth-input mt-2"
+                  id="password"
+                  data-field="password"
+                  name="password"
+                  placeholder="Min. 8 characters"
+                  type="password"
+                />
+              </div>
+
+              <div>
+                <label class="text-xs font-medium text-slate-300" for="confirmPassword">Confirm Password</label>
+                <input
+                  class="auth-input mt-2"
+                  id="confirmPassword"
+                  data-field="confirm_password"
+                  name="confirmPassword"
+                  placeholder="Re-enter your password"
+                  type="password"
+                />
+              </div>
+
+              <label class="flex items-start gap-2 text-xs text-slate-300">
+                <input
+                  class="mt-1 h-4 w-4 rounded border-slate-500 bg-transparent"
+                  data-field="accept_terms"
+                  type="checkbox"
+                />
+                <span>
+                  I agree to the
+                  <a class="auth-link" href="#">Terms of Service</a>
+                  and
+                  <a class="auth-link" href="#">Privacy Policy</a>
+                </span>
+              </label>
+
+              <button class="auth-btn" data-action="signup" type="submit">
+                Create Account
+                <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-300">
+            Already have an account?
+            <a class="auth-link font-medium" data-link="login" href="login.html">Sign in</a>
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
